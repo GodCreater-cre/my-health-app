@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>健康生活每一天 - 扫码访问</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js/qrcode.min.js"></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        font-family: "Noto Sans SC", sans-serif;
+      }
+      .container {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+      }
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+      p {
+        color: #666;
+        margin-bottom: 2rem;
+      }
+      #qrcode {
+        margin: 0 auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 10px;
+      }
+      .url {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        color: #666;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>健康生活每一天</h1>
+      <p>扫描二维码访问网站</p>
+      <div id="qrcode"></div>
+      <div class="url" id="url"></div>
+    </div>
+
+    <script>
+      // 获取当前网站的URL（去掉qrcode.html）
+      const baseUrl = window.location.href.replace("qrcode.html", "");
+
+      // 生成二维码
+      new QRCode(document.getElementById("qrcode"), {
+        text: baseUrl,
+        width: 200,
+        height: 200,
+        colorDark: "#2c3e50",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+
+      // 显示URL
+      document.getElementById("url").textContent = baseUrl;
+    </script>
+  </body>
+</html>
